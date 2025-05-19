@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+      "hashicorp.terraform",           // Official Terraform extension for syntax and validation
+      "editorconfig.editorconfig",     // Enforces consistent code formatting
+      "esbenp.prettier-vscode",        // Formatter, helpful when using JSON/YAML in IaC
+      "gruntfuggly.todo-tree",         // Highlights TODOs in comments
+      "ms-azuretools.vscode-docker",   // Optional, for containerizing later
+      "github.vscode-pull-request-github", // GitHub integration for PR reviews
+      "amazonwebservices.aws-toolkit-vscode" // Optional: browse AWS resources from VSCode
+    ]
+  }
+  

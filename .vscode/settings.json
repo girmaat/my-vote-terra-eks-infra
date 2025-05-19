@@ -1,0 +1,24 @@
+{
+  // Format on save (for Terraform, JSON, YAML, etc.)
+  "editor.formatOnSave": true,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  // Terraform-specific config
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": true
+  },
+  // Trim whitespace automatically
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  // Enable prettier for supported formats
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  // Optional: auto-detect indent style via .editorconfig
+  "editor.detectIndentation": true
+}
