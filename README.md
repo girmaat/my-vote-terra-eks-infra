@@ -36,3 +36,17 @@ chmod +x scripts/destroy.sh
 # destroy checks
 chmod +x scripts/validate_post_destroy.sh
 ./scripts/validate_post_destroy.sh
+
+
+# Bash script that recursively walks through your Terraform project folder, and creates a single output text file with:
+    A number for each file
+    The relative path
+    The full content of the file
+
+ The file is in root directory and file name is generate_tf_summary.sh
+Make it executable:
+
+chmod +x generate_tf_summary.sh
+
+./generate_tf_summary.sh
+It will generate a terraform_code_summary.txt file in the same directory.

@@ -5,5 +5,5 @@ crash.log
 *.backup
 *.log
 terraform.tfvars
-reports/pre_apply_check.json
-reports/pre_apply_check.html
+scripts/pre_apply_checks/reports/*
+
