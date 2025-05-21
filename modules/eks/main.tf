@@ -16,16 +16,28 @@ resource "aws_eks_cluster" "main" {
   depends_on = [aws_iam_role_policy_attachment.eks_cluster_policy]
 }
 
+
+
 resource "aws_security_group" "eks_nodes" {
   name   = "${var.project}-${var.environment}-eks-nodes"
   vpc_id = var.vpc_id
 
   ingress {
+    description = "Allow node-to-node"
     from_port   = 0
     to_port     = 65535
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    self        = true
   }
+
+  ingress {
+    description = "Allow control plane to kubelet"
+    from_port   = 10250
+    to_port     = 10250
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # Or restrict to AWS EKS IP ranges
+  }
+
 
   egress {
     from_port   = 0
@@ -57,7 +69,13 @@ resource "aws_launch_template" "eks_nodes" {
   )
 
   vpc_security_group_ids = [aws_security_group.eks_nodes.id]
+
+  metadata_options {
+    http_endpoint = "enabled"
+    http_tokens   = "optional" # "required" also works but your bootstrap must handle IMDSv2 tokens
+  }
 }
+
 
 resource "aws_iam_instance_profile" "eks_node" {
   name = "${var.cluster_name}-node-profile"
@@ -75,10 +93,10 @@ data "aws_ami" "eks_ami" {
 }
 
 resource "aws_autoscaling_group" "eks_nodes" {
-  desired_capacity     = 2
-  max_size             = 3
-  min_size             = 1
-  vpc_zone_identifier  = var.private_subnet_ids
+  desired_capacity    = 2
+  max_size            = 3
+  min_size            = 1
+  vpc_zone_identifier = var.private_subnet_ids
   launch_template {
     id      = aws_launch_template.eks_nodes.id
     version = "$Latest"

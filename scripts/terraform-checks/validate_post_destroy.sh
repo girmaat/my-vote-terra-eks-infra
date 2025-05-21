@@ -11,7 +11,7 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 print_section() {
-  echo -e "\\n${BLUE}=== $1 ===${NC}"
+  echo -e "\n${BLUE}=== $1 ===${NC}"
 }
 
 print_pass() {
@@ -26,7 +26,7 @@ print_fail() {
 # 1. VPC Check
 ##########################
 print_section "VPC Check"
-VPC_COUNT=$(aws ec2 describe-vpcs --filters "Name=tag:Project,Values=my-vote" --region $AWS_REGION --query "Vpcs" | jq 'length')
+VPC_COUNT=$(aws ec2 describe-vpcs --filters "Name=tag:Project,Values=my-vote" --region $AWS_REGION --query "Vpcs" | jq -r 'length')
 if [[ "$VPC_COUNT" -eq 0 ]]; then
   print_pass "No VPCs found with 'my-vote' tag"
 else
@@ -78,3 +78,5 @@ if [[ -z "$PROFILES" ]]; then
 else
   print_fail "Instance profiles still exist: $PROFILES"
 fi
+
+echo -e "\n${BLUE}=== Post-Destroy Validation Complete ===${NC}"

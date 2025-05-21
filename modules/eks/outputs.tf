@@ -17,3 +17,8 @@ output "worker_role_arn" {
 output "asg_name" {
   value = aws_autoscaling_group.eks_nodes.name
 }
+
+output "aws_auth_config" {
+  description = "Final aws-auth mapRoles ConfigMap rendered"
+  value       = kubernetes_config_map.aws_auth.data
+}

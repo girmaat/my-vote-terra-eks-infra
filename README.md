@@ -32,10 +32,16 @@ chmod +x scripts/destroy.sh
 # Step 2: Apply it
 chmod +x scripts/destroy.sh
 ./scripts/destroy.sh dev
-
+[script automatically triggers ./scripts/validate_post_destroy.sh]
 # destroy checks
-chmod +x scripts/validate_post_destroy.sh
-./scripts/validate_post_destroy.sh
+chmod +x scripts/terraform-checks/validate_post_destroy.sh
+./scripts/terraform-checks/validate_post_destroy.sh
+
+
+# Manually Destroy Resources
+chmod +x scripts/aws/manual-full-cleanup.sh
+./scripts/aws/manual-full-cleanup.sh
+
 
 
 # Bash script that recursively walks through your Terraform project folder, and creates a single output text file with:
@@ -46,7 +52,7 @@ chmod +x scripts/validate_post_destroy.sh
  The file is in root directory and file name is generate_tf_summary.sh
 Make it executable:
 
-chmod +x generate_tf_summary.sh
+chmod +x generate_project_summary.sh
 
-./generate_tf_summary.sh
+./generate_project_summary.sh
 It will generate a terraform_code_summary.txt file in the same directory.

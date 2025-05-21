@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ENV="${1:-dev}"
-DIR="environments/${ENV}"
+DIR="environments/${ENV}/terraform"
 PLAN_FILE="terraform.tfplan"
 
 GREEN='\033[0;32m'

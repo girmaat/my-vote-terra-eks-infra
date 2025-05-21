@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "../../modules/vpc"
+  source = "../../../modules/vpc"
 
   project              = var.project
   environment          = var.environment
@@ -10,7 +10,7 @@ module "vpc" {
   aws_region           = var.aws_region
 }
 module "eks" {
-  source = "../../modules/eks"
+  source = "../../../modules/eks"
 
   cluster_name       = var.cluster_name
   project            = var.project

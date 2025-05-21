@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ENV="${1:-dev}"
-DIR="environments/${ENV}"
+DIR="environments/${ENV}/terraform"  # ✅ FIX: go into terraform subdir
 
 GREEN='\033[0;32m'
 BLUE='\033[1;34m'

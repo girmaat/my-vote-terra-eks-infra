@@ -5,5 +5,12 @@ crash.log
 *.backup
 *.log
 terraform.tfvars
-scripts/pre_apply_checks/reports/*
+terraform-checks/scripts/pre_apply_checks/reports/*
+# Terraform internals and state
+.terraform/
+terraform.tfstate
+terraform.tfstate.*
+*.tfplan
+.git
+
 
