@@ -16,12 +16,20 @@ w3m reports/pre_apply_check.html or
 lynx reports/pre_apply_check.html
 
 
-
-
 # How to use scripts/validate_post_apply.sh
-chmod +x scripts/destroy-plan.sh
-./scripts/destroy-plan.sh dev
 
+# How to diagnose issues? After applying Terraform:
+# Update kubeconfig
+aws eks update-kubeconfig --name my-vote-dev --region us-east-1
+# Wait until nodes are Ready
+kubectl get nodes
+
+# Run diagnostics
+./scripts/k8-pod-lifecycle-stability-diagnose.sh
+./scripts/k8s-config-scheduling-diagnose.sh
+./scripts/k8s-network-diagnose.sh
+./scripts/k8s-probe-diagnose.sh
+./scripts/k8s-security-diagnose.sh
 
 Destroying infr:
 

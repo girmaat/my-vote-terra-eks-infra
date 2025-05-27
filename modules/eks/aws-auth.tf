@@ -28,6 +28,6 @@ resource "kubernetes_config_map" "aws_auth" {
 
   depends_on = [
     aws_eks_cluster.main,
-    aws_autoscaling_group.eks_nodes
+    #aws_autoscaling_group.eks_nodes
   ]
 }

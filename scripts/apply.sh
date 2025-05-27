@@ -66,3 +66,10 @@ if [[ "$READY_NODES" -eq 0 ]]; then
 fi
 
 echo -e "${GREEN}[✔] Terraform apply and EKS node readiness complete for '${CLUSTER_NAME}'${NC}"
+
+# 🩺 Final node health check fallback
+echo -e "${BLUE}[*] Running post-apply fix check in fix mode...${NC}"
+"${ROOT_DIR}/scripts/terraform-checks/validate_post_apply.sh" "${ENV}" --fix || {
+  echo -e "${RED}[!] Node readiness recovery failed. Manual investigation recommended.${NC}"
+  exit 1
+}

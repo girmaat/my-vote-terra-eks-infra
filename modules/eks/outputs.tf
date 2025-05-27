@@ -14,11 +14,15 @@ output "worker_role_arn" {
   value = aws_iam_role.eks_node.arn
 }
 
-output "asg_name" {
-  value = aws_autoscaling_group.eks_nodes.name
-}
+
 
 output "aws_auth_config" {
   description = "Final aws-auth mapRoles ConfigMap rendered"
   value       = kubernetes_config_map.aws_auth.data
+}
+
+
+output "worker_role_name" {
+  description = "IAM role name used by EKS worker nodes"
+  value       = aws_iam_role.eks_node.name
 }

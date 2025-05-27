@@ -23,11 +23,6 @@ variable "private_subnet_ids" {
   type        = list(string)
 }
 
-variable "public_subnet_ids" {
-  description = "Public subnets for optional ALB or NAT"
-  type        = list(string)
-}
-
 variable "aws_region" {
   description = "AWS region"
   type        = string

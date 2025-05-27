@@ -44,3 +44,16 @@ variable "cluster_name" {
   description = "cluster name"
   type        = string
 }
+
+
+variable "public_subnet_ids" {
+  description = "List of public subnet IDs (optional, for ALBs or public networking)"
+  type        = list(string)
+  default     = []
+}
+
+variable "instance_profile_name" {
+  description = "Name of the IAM instance profile for EKS worker nodes"
+  type        = string
+}
+
