@@ -1,7 +1,3 @@
-data "aws_eks_cluster" "this" {
-  name = var.cluster_name
-}
-
 data "aws_ami" "eks_ami" {
   owners      = ["602401143452"]
   most_recent = true
@@ -51,8 +47,10 @@ resource "aws_launch_template" "eks_nodes" {
 
   user_data = base64encode(
     templatefile("${path.module}/bootstrap.tpl", {
-      cluster_name     = var.cluster_name
-
+      cluster_name     = var.cluster_name,
+      region           = var.aws_region,
+      cluster_endpoint = var.cluster_endpoint,
+      cluster_ca       = var.cluster_ca
     })
   )
 

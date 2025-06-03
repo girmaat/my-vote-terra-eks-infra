@@ -24,6 +24,11 @@ variable "cluster_ca" {
   type        = string
 }
 
+variable "aws_region" {
+  description = "AWS region"
+  type        = string
+}
+
 variable "node_role_name" {
   description = "IAM role name for EKS worker nodes"
   type        = string

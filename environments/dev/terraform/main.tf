@@ -27,6 +27,7 @@ module "eks_nodes" {
   node_role_name        = module.eks.worker_role_name
   cluster_endpoint      = module.eks.cluster_endpoint
   cluster_ca            = module.eks.cluster_ca
+  aws_region            = var.aws_region
 }
 
 

@@ -5,19 +5,12 @@ yum install -y amazon-ssm-agent
 systemctl enable amazon-ssm-agent
 systemctl start amazon-ssm-agent
 
-# Fetch cluster data dynamically
-REGION="us-east-1"
-CLUSTER="my-vote-dev"
+REGION="${region}"
+CLUSTER="${cluster_name}"
 
-API_ENDPOINT=$(aws eks describe-cluster \
-  --name $CLUSTER \
-  --region $REGION \
-  --query "cluster.endpoint" --output text)
-
-CLUSTER_CA=$(aws eks describe-cluster \
-  --name $CLUSTER \
-  --region $REGION \
-  --query "cluster.certificateAuthority.data" --output text)
+# Endpoint and certificate authority are provided by Terraform
+API_ENDPOINT="${cluster_endpoint}"
+CLUSTER_CA="${cluster_ca}"
 
 /etc/eks/bootstrap.sh $CLUSTER \
   --apiserver-endpoint "$API_ENDPOINT" \
