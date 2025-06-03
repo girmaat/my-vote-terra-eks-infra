@@ -24,7 +24,6 @@ module "eks_nodes" {
   cluster_name          = module.eks.cluster_name
   vpc_id                = module.vpc.vpc_id
   private_subnet_ids    = module.vpc.private_subnet_ids
-  instance_profile_name = module.eks_nodes.instance_profile_name
   node_role_name        = module.eks.worker_role_name
   cluster_endpoint      = module.eks.cluster_endpoint
   cluster_ca            = module.eks.cluster_ca

@@ -52,8 +52,4 @@ variable "public_subnet_ids" {
   default     = []
 }
 
-variable "instance_profile_name" {
-  description = "Name of the IAM instance profile for EKS worker nodes"
-  type        = string
-}
 
