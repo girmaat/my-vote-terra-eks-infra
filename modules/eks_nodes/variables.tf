@@ -13,10 +13,6 @@ variable "private_subnet_ids" {
   type        = list(string)
 }
 
-variable "instance_profile_name" {
-  description = "IAM instance profile name for EC2 nodes"
-  type        = string
-}
 
 variable "cluster_endpoint" {
   description = "EKS cluster API endpoint"

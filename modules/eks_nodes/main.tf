@@ -46,7 +46,7 @@ resource "aws_launch_template" "eks_nodes" {
   instance_type = "t3.medium"
 
   iam_instance_profile {
-    name = var.instance_profile_name
+    name = aws_iam_instance_profile.eks_node.name
   }
 
   user_data = base64encode(
